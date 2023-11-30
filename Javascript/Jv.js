@@ -82,7 +82,7 @@ function CreateHtml(val1,val2,num) {
     const number = document.createElement ("h1");
 
     //inserisco numero all'interno del mio tag h1
-    number.append(i);
+    number.append(array[i]);
 
     //inserisco numero all'interno del quadrato il tag h1
     square.append(number);
@@ -107,7 +107,7 @@ function hideHtml() {
 
     console.log(items);
                         
-    for(let i= 0; i<=items.length; i++){
+    for(let i= 0; i<items.length; i++){
       
         items[i].classList.add("hide");
 
