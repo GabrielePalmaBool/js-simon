@@ -22,7 +22,7 @@ const DeleteButton = document.getElementById("del");
 var num = 0;
 
 //creo e inizializzo una variabile globale a zero per tenere traccia del numero massimo di blocchi da inserire
-const MaxSquare = 5;
+const MaxSquare = 7;
 
 // dichiaro variabile booleana per tener traccia se l'array con i numeri è stato riempito
 let aggiunto = false;
@@ -45,7 +45,7 @@ function CreateRandom(MaxSquare) {
         while(num.length < MaxSquare){
 
              //richiamo funzione random e memorizzo nelle varie posizioni dell'array
-             let val1 = Math.floor(Math.random() * MaxSquare);
+             let val1 = Math.floor(Math.random() * 24);
 
              //controllo che tale valore non sia presente nel mio array bomb
              if(!num.includes(val1)){
@@ -68,7 +68,7 @@ function CreateRandom(MaxSquare) {
 
 }
 
-
+//funzione per la creazione/inserimento in pagina dei numeri random
 function CreateHtml(val1,val2,num) {
 
     const array = num;
@@ -99,6 +99,7 @@ function CreateHtml(val1,val2,num) {
 
 }
 
+//funzione che nasconde i numeri
 function hideHtml() {
 
    
@@ -120,8 +121,10 @@ CreateButton.addEventListener("click",
             
             const num = CreateRandom(MaxSquare);
 
+            //
             CreateHtml('div','Box',num);
 
+            //setto contatore a 3 secondi
             setTimeout(hideHtml,3000);
 
         
