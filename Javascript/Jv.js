@@ -24,26 +24,21 @@ const DeleteButton = document.getElementById("del");
 // dichiaro l'elemento (bottone) che ha per id check,
 const CheckButton = document.getElementById("check");
 
-//creo e inizializzo una variabile globale a zero per i numeri all'interno dei blocchi
-var num = 0;
-
 //creo e inizializzo una variabile globale a zero per tenere traccia del numero massimo di blocchi da inserire
 const MaxSquare = 7;
 
 // dichiaro variabile booleana per tener traccia se l'array con i numeri è stato riempito
 let aggiunto = false;
 
-
+// dichiaro variabile array vuoto 
+const num = [];
 
 
 function CreateRandom(MaxSquare) {
 
-    // dichiaro variabile array vuoto 
-    const num = [];
-
-    //controllo se l'array  con i numeri delle bombe non è stato riempito
+    //controllo se l'array con i numeri non è stato riempito
     if(aggiunto == false){
-        console.log("ok");
+        
         //imposto la variabile posizione
         let pos = 0;
 
@@ -70,16 +65,12 @@ function CreateRandom(MaxSquare) {
         aggiunto = true;
     }
 
-    return num;
-
 }
 
 //funzione per la creazione/inserimento in pagina dei numeri random
-function CreateHtml(val1,val2,num) {
+function CreateHtml(val1,val2,) {
 
-    const array = num;
-
-    for(let i= 0; i<array.length;i++){
+    for(let i= 0; i<num.length;i++){
 
     //Creo l'elemento all'interno del mio file html
     const square = document.createElement (val1);
@@ -88,7 +79,7 @@ function CreateHtml(val1,val2,num) {
     const number = document.createElement ("h1");
 
     //inserisco numero all'interno del mio tag h1
-    number.append(array[i]);
+    number.append(num[i]);
 
     //inserisco numero all'interno del quadrato il tag h1
     square.append(number);
@@ -111,8 +102,7 @@ function hideHtml() {
    
     //acquisisco i valore nel tag p(qualora ci fosse)
     const number = document.querySelector('.block .Box');
-       
-    num = 0;
+   
     //Verifico che c'è
     if(number != null){
 
@@ -137,7 +127,7 @@ function hideHtml() {
 CreateButton.addEventListener("click",
         () => {
             
-            const num = CreateRandom(MaxSquare);
+            CreateRandom(MaxSquare);
 
             //chiamo funzione per la creazione dei numeri
             CreateHtml('div','Box',num);
@@ -155,22 +145,51 @@ CreateButton.addEventListener("click",
 
 function chekVal() {
 
-    //acquisisco i valori inviati dall'utente
-    const UsNum1 = document.querySelector(".val1");
+    const ValUser = document.getElementsByClassName ('val');
+    
+    let nErr = 0;
 
-    const UsNum2 = document.querySelector(".val2");
-    
-    const UsNum3 = document.querySelector(".val3");
-    
-    const UsNum4 = document.querySelector(".val4");
-    
-    const UsNum5 = document.querySelector(".val5");
-    
-    const UsNum6 = document.querySelector(".val6");
-    
-    const UsNum7 = document.querySelector(".val7");
+    for(let i= 0; i < ValUser.length; i++) {
 
- 
+        //acquisisco i valori dai vari tag num e li converto in numeri interi
+        let val = parseInt(ValUser[i].value);
+
+        if(!num.includes(val)){
+
+            console.log(val);
+            
+            nErr++;
+        }
+
+    }
+
+    if(nErr != 0){
+
+            //Creo l'elemento all'interno del mio file html
+            const stringa = document.createElement ("p");
+
+            //inserisco scritta all'interno del mio contenuto
+            stringa.append("Alcuni valori inseriti non sono corretti");
+
+            //inserisco stringa all'interno del mio contenitore "none"
+            ContainerBlock.append(stringa);
+
+    }
+
+    else {
+
+        //Creo l'elemento all'interno del mio file html
+        const stringa = document.createElement ("p");
+
+        //inserisco scritta all'interno del mio contenuto
+        stringa.append("Bravo hai vinto!");
+
+        //inserisco stringa all'interno del mio contenitore "none"
+        ContainerBlock.append(stringa);
+    }
+
+  
+    
 
 }
 
