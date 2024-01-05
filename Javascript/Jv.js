@@ -18,9 +18,6 @@ const ContainerBlock = document.querySelector(".block");
 // dichiaro l'elemento (bottone) che ha per id play,
 const CreateButton = document.getElementById("play");
 
-// dichiaro l'elemento (bottone) che ha per id del
-const DeleteButton = document.getElementById("del");
-
 // dichiaro l'elemento (bottone) che ha per id check,
 const CheckButton = document.getElementById("check");
 
@@ -38,7 +35,7 @@ function CreateRandom(MaxSquare) {
 
     //controllo se l'array con i numeri non è stato riempito
     if (aggiunto == false) {
-
+        console.log(aggiunto);
         //imposto la variabile posizione
         let pos = 0;
 
@@ -64,11 +61,12 @@ function CreateRandom(MaxSquare) {
         //segnalo che l'array è stato riempito
         aggiunto = true;
     }
+    else console.log("ok");
 
 }
 
 //funzione per la creazione/inserimento in pagina dei numeri random
-function CreateHtml(val1, val2,) {
+function CreateHtml(val1, val2) {
 
     for (let i = 0; i < num.length; i++) {
 
@@ -133,7 +131,7 @@ CreateButton.addEventListener("click",
         CreateRandom(MaxSquare);
 
         //chiamo funzione per la creazione dei blocchi html in pagina
-        CreateHtml('div', 'Box', num);
+        CreateHtml('div', 'Box');
 
         //setto contatore a 3 secondi
         setTimeout(hideHtml, 3000);
