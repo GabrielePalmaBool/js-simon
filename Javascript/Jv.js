@@ -40,7 +40,7 @@ function CreateRandom(MaxSquare) {
         let pos = 0;
 
         //faccio partire il controllo
-        while (num.length < MaxSquare) {
+        while (pos < MaxSquare) {
 
             //richiamo funzione random e memorizzo nelle varie posizioni dell'array
             let val1 = Math.floor(Math.random() * 24);
